@@ -1,0 +1,1403 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Uma Semana Mais Bonita Para Gaby</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    :root {
+      --dark: #030712;
+      --dark2: #07111f;
+      --card: rgba(255,255,255,0.08);
+      --border: rgba(255,255,255,0.18);
+      --text: #f8fafc;
+      --muted: #cbd5e1;
+      --gold: #facc15;
+      --green: #22c55e;
+      --blue: #38bdf8;
+      --pink: #fb7185;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(34,197,94,.25), transparent 30%),
+        radial-gradient(circle at 80% 20%, rgba(250,204,21,.18), transparent 28%),
+        radial-gradient(circle at 50% 90%, rgba(56,189,248,.16), transparent 35%),
+        linear-gradient(180deg, #020617, #07111f 48%, #030712);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    .noise {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .06;
+      z-index: -3;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+    }
+
+    .stars {
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(#fff 1px, transparent 1px),
+        radial-gradient(#fff 1px, transparent 1px);
+      background-size: 48px 48px, 90px 90px;
+      background-position: 0 0, 20px 30px;
+      opacity: .13;
+      z-index: -2;
+      animation: starsMove 35s linear infinite;
+    }
+
+    @keyframes starsMove {
+      from { transform: translateY(0); }
+      to { transform: translateY(220px); }
+    }
+
+    .orb {
+      position: fixed;
+      border-radius: 999px;
+      filter: blur(45px);
+      opacity: .35;
+      z-index: -1;
+      animation: floatOrb 12s ease-in-out infinite alternate;
+    }
+
+    .orb.one {
+      width: 220px;
+      height: 220px;
+      background: var(--gold);
+      top: 8%;
+      left: -70px;
+    }
+
+    .orb.two {
+      width: 260px;
+      height: 260px;
+      background: var(--green);
+      right: -90px;
+      top: 38%;
+      animation-delay: 2s;
+    }
+
+    .orb.three {
+      width: 210px;
+      height: 210px;
+      background: var(--blue);
+      left: 20%;
+      bottom: -90px;
+      animation-delay: 3s;
+    }
+
+    @keyframes floatOrb {
+      from { transform: translateY(0) scale(1); }
+      to { transform: translateY(-35px) scale(1.08); }
+    }
+
+    .topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 14px 18px;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(3,7,18,.55);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      letter-spacing: .3px;
+    }
+
+    .brand-icon {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--gold), var(--green));
+      color: #020617;
+      box-shadow: 0 10px 30px rgba(250,204,21,.22);
+    }
+
+    .status-pill {
+      font-size: .78rem;
+      color: #dcfce7;
+      border: 1px solid rgba(134,239,172,.3);
+      background: rgba(34,197,94,.12);
+      padding: 8px 12px;
+      border-radius: 999px;
+    }
+
+    section {
+      min-height: 100vh;
+      padding: 95px 20px 45px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .wrap {
+      width: 100%;
+      max-width: 1040px;
+    }
+
+    .card {
+      width: 100%;
+      background: linear-gradient(180deg, rgba(255,255,255,.1), rgba(255,255,255,.055));
+      border: 1px solid var(--border);
+      border-radius: 34px;
+      padding: 34px;
+      box-shadow: 0 30px 95px rgba(0,0,0,.45);
+      backdrop-filter: blur(18px);
+      animation: fadeUp .7s ease both;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at top left, rgba(250,204,21,.14), transparent 32%),
+        radial-gradient(circle at bottom right, rgba(34,197,94,.12), transparent 35%);
+      pointer-events: none;
+    }
+
+    .card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(26px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 13px;
+      border-radius: 999px;
+      font-size: .85rem;
+      margin-bottom: 18px;
+      color: #fef9c3;
+      border: 1px solid rgba(250,204,21,.28);
+      background: rgba(250,204,21,.11);
+    }
+
+    h1 {
+      font-size: clamp(2.25rem, 8vw, 5rem);
+      line-height: .98;
+      letter-spacing: -2px;
+      margin-bottom: 20px;
+      background: linear-gradient(90deg, #fff7ad, #fff, #86efac);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    h2 {
+      font-size: clamp(1.8rem, 5vw, 3.2rem);
+      line-height: 1.06;
+      margin-bottom: 18px;
+      color: #fff7ad;
+      letter-spacing: -1px;
+    }
+
+    h3 {
+      font-size: 1.35rem;
+      margin-bottom: 12px;
+      color: #bbf7d0;
+    }
+
+    p {
+      color: var(--muted);
+      font-size: 1.06rem;
+      line-height: 1.8;
+      margin-bottom: 14px;
+    }
+
+    .lead {
+      font-size: 1.18rem;
+      color: #f8fafc;
+      max-width: 780px;
+    }
+
+    .highlight {
+      color: var(--gold);
+      font-weight: 800;
+    }
+
+    .green {
+      color: #86efac;
+      font-weight: 800;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+      margin-top: 24px;
+    }
+
+    button,
+    .btn {
+      border: none;
+      border-radius: 999px;
+      padding: 15px 22px;
+      font-weight: 850;
+      cursor: pointer;
+      font-size: .98rem;
+      transition: .25s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+    }
+
+    .primary {
+      background: linear-gradient(135deg, var(--gold), var(--green));
+      color: #03111f;
+      box-shadow: 0 18px 45px rgba(250,204,21,.22);
+    }
+
+    .secondary {
+      background: rgba(255,255,255,.08);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,.16);
+    }
+
+    button:hover,
+    .btn:hover {
+      transform: translateY(-3px) scale(1.015);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .grid.two {
+      grid-template-columns: repeat(2, minmax(0,1fr));
+    }
+
+    .grid.three {
+      grid-template-columns: repeat(3, minmax(0,1fr));
+    }
+
+    .mini-card {
+      padding: 20px;
+      border-radius: 25px;
+      background: rgba(255,255,255,.075);
+      border: 1px solid rgba(255,255,255,.14);
+    }
+
+    .mini-card strong {
+      color: #86efac;
+      display: block;
+      margin-bottom: 8px;
+      font-size: 1.05rem;
+    }
+
+    .quote {
+      padding: 20px;
+      border-left: 4px solid var(--gold);
+      background: rgba(250,204,21,.08);
+      border-radius: 18px;
+      color: #fefce8;
+      line-height: 1.75;
+      margin: 20px 0;
+    }
+
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.25), transparent);
+      margin: 26px 0;
+    }
+
+    .progress-shell {
+      margin-top: 24px;
+      background: rgba(255,255,255,.08);
+      border-radius: 999px;
+      padding: 5px;
+      border: 1px solid rgba(255,255,255,.12);
+    }
+
+    .progress-bar {
+      width: 0%;
+      height: 13px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--gold), var(--green), var(--blue));
+      transition: width .5s ease;
+    }
+
+    .progress-text {
+      margin-top: 9px;
+      font-size: .9rem;
+      color: #d1fae5;
+    }
+
+    .day-list {
+      display: grid;
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .day-row {
+      display: grid;
+      grid-template-columns: 92px 1fr;
+      gap: 14px;
+      padding: 17px;
+      border-radius: 22px;
+      background: rgba(255,255,255,.075);
+      border: 1px solid rgba(255,255,255,.13);
+    }
+
+    .day-name {
+      color: #fef08a;
+      font-weight: 900;
+    }
+
+    .day-row p {
+      margin: 0;
+      font-size: .98rem;
+    }
+
+    .secret-area {
+      display: grid;
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .secret {
+      padding: 18px;
+      border-radius: 22px;
+      background: rgba(255,255,255,.07);
+      border: 1px dashed rgba(255,255,255,.22);
+      cursor: pointer;
+      transition: .25s;
+    }
+
+    .secret:hover {
+      background: rgba(255,255,255,.12);
+      transform: translateY(-2px);
+    }
+
+    .secret-message {
+      display: none;
+      margin-top: 12px;
+      color: #dcfce7;
+      line-height: 1.7;
+    }
+
+    .phone {
+      max-width: 420px;
+      margin: 20px auto 0;
+      border-radius: 34px;
+      padding: 14px;
+      background: #020617;
+      border: 1px solid rgba(255,255,255,.18);
+      box-shadow: 0 28px 70px rgba(0,0,0,.45);
+    }
+
+    .phone-top {
+      text-align: center;
+      padding: 12px;
+      color: #e2e8f0;
+      font-size: .9rem;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+      margin-bottom: 12px;
+    }
+
+    .chat {
+      display: grid;
+      gap: 10px;
+    }
+
+    .msg {
+      max-width: 86%;
+      padding: 13px 15px;
+      border-radius: 18px;
+      line-height: 1.55;
+      font-size: .96rem;
+    }
+
+    .msg.gaby {
+      background: rgba(255,255,255,.11);
+      color: #e5e7eb;
+      justify-self: start;
+      border-bottom-left-radius: 5px;
+    }
+
+    .msg.rafihx {
+      background: linear-gradient(135deg, rgba(250,204,21,.85), rgba(34,197,94,.85));
+      color: #03111f;
+      justify-self: end;
+      border-bottom-right-radius: 5px;
+      font-weight: 650;
+    }
+
+    .game-box {
+      padding: 24px;
+      border-radius: 28px;
+      background: rgba(2,6,23,.44);
+      border: 1px solid rgba(255,255,255,.16);
+      margin-top: 22px;
+    }
+
+    .options {
+      display: grid;
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .option {
+      text-align: left;
+      color: white;
+      background: rgba(255,255,255,.09);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 20px;
+      padding: 17px;
+      line-height: 1.45;
+    }
+
+    .answer {
+      display: none;
+      margin-top: 20px;
+      padding: 18px;
+      border-radius: 22px;
+      border: 1px solid rgba(134,239,172,.32);
+      background: rgba(34,197,94,.12);
+      color: #dcfce7;
+      line-height: 1.75;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .badge {
+      padding: 9px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.15);
+      background: rgba(255,255,255,.075);
+      color: #e0f2fe;
+      font-size: .88rem;
+    }
+
+    .final-letter {
+      white-space: pre-line;
+      color: #e5e7eb;
+      line-height: 1.85;
+      font-size: 1.05rem;
+    }
+
+    .heart {
+      position: fixed;
+      top: -25px;
+      pointer-events: none;
+      z-index: 30;
+      animation: fall 4.2s linear forwards;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(112vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .topbar {
+        padding: 12px 14px;
+      }
+
+      .status-pill {
+        display: none;
+      }
+
+      section {
+        padding: 85px 15px 35px;
+      }
+
+      .card {
+        padding: 25px 18px;
+        border-radius: 28px;
+      }
+
+      .grid.two,
+      .grid.three {
+        grid-template-columns: 1fr;
+      }
+
+      .day-row {
+        grid-template-columns: 1fr;
+      }
+
+      .actions {
+        flex-direction: column;
+      }
+
+      button,
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="noise"></div>
+  <div class="stars"></div>
+  <div class="orb one"></div>
+  <div class="orb two"></div>
+  <div class="orb three"></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-icon">❤</div>
+      <span>Semana da Gaby</span>
+    </div>
+    <div class="status-pill">Feito com carinho por Rafihx</div>
+  </header>
+
+  <main>
+
+    <section id="home">
+      <div class="wrap">
+        <div class="card">
+          <div class="tag">🌙 Um refúgio para começar a semana</div>
+
+          <h1>Gaby, essa semana pode ser incrível.</h1>
+
+          <p class="lead">
+            Antes que a rotina comece de verdade, antes que o trabalho pese, antes que o cansaço tente
+            tomar conta do seu dia, eu queria te entregar uma coisa simples: um lembrete.
+          </p>
+
+          <p>
+            Você não está entrando nessa semana sozinha. Existe alguém chamado
+            <span class="highlight">Rafihx</span> que acredita em você, que torce por você e que quer muito
+            ver você terminando esses dias com orgulho de si mesma.
+          </p>
+
+          <div class="quote">
+            “Não precisa ser uma semana perfeita. Só precisa ser uma semana em que você não desista de você.”
+          </div>
+
+          <div class="actions">
+            <button class="primary" onclick="goTo('weekend')">Começar o site</button>
+            <button class="secondary" onclick="goTo('mapa')">Ver o caminho da semana</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="weekend" class="hidden">
+      <div class="wrap">
+        <div class="card">
+          <div class="tag">❤️ Antes da nova semana</div>
+          <h2>Sobre o nosso fim de semana</h2>
+
+          <p>
+            Nosso fim de semana foi incrível e maravilhoso para mim.
+          </p>
+
+          <p>
+            Teve momentos que me fizeram sorrir de verdade, momentos que eu vou guardar com carinho
+            e lembranças que me fizeram pensar no quanto eu amo ter você na minha vida.
+          </p>
+
+          <p>
+            Também tivemos algumas brigas, algumas faltas de atenção e momentos que poderiam ter sido diferentes.
+            Mas acontece. Nenhum relacionamento é feito só de momentos perfeitos.
+          </p>
+
+          <p>
+            O que importa é que nada disso apaga o que foi bonito. Nada disso tira o valor dos momentos bons.
+            Nada disso diminui a vontade que eu tenho de continuar escolhendo você.
+          </p>
+
+          <p>
+            Porque quando eu penso no nosso fim de semana, eu não quero lembrar só dos erros.
+            Eu quero lembrar de você, da sua presença, da sua voz, das nossas conversas e do quanto eu gosto
+            de viver momentos ao seu lado.
+          </p>
+
+          <div class="grid three">
+            <div class="mini-card">
+              <strong>O que foi bonito</strong>
+              <p>Os momentos em que a gente ficou bem, conversou, riu e sentiu que ainda existe muito carinho entre nós.</p>
+            </div>
+
+            <div class="mini-card">
+              <strong>O que pode melhorar</strong>
+              <p>Mais atenção, mais calma e menos impulso na hora de lidar com coisas pequenas.</p>
+            </div>
+
+            <div class="mini-card">
+              <strong>O que eu escolho</strong>
+              <p>Eu escolho aprender com você, melhorar por nós e começar essa semana com mais carinho.</p>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button class="primary" onclick="goTo('mapa')">Continuar</button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="mapa" class="hidden">
+      <div class="wrap">
+        <div class="card">
+          <div class="tag">🗓️ Mapa emocional da semana</div>
+          <h2>Um dia de cada vez</h2>
+
+          <p>
+            Essa semana não precisa ser perfeita para ser especial. Ela só precisa ter pequenas vitórias,
+            alguns respiros e momentos em que você lembre do seu próprio valor.
+          </p>
+
+          <div class="day-list">
+            <div class="day-row">
+              <div class="day-name">Segunda</div>
+              <p>Comece devagar. Não precisa carregar a semana inteira em um único dia.</p>
+            </div>
+
+            <div class="day-row">
+              <div class="day-name">Terça</div>
+              <p>Um dia comum também pode guardar uma surpresa boa, uma risada ou uma mensagem que te faça bem.</p>
+            </div>
+
+            <div class="day-row">
+              <div class="day-name">Quarta</div>
+              <p>Se o cansaço aparecer, lembra que descansar também é uma forma de continuar.</p>
+            </div>
+
+            <div class="day-row">
+              <div class="day-name">Quinta</div>
+              <p>Você já vai estar mais longe do que estava no começo. Continua no seu ritmo.</p>
+            </div>
+
+            <div class="day-row">
+              <div class="day-name">Sexta</div>
+              <p>Mesmo cansada, você continua sendo incrível. O peso do dia não apaga quem você é.</p>
+            </div>
+
+            <div class="day-row">
+              <div class="day-name">Sábado</div>
+              <p>Você chegou até aqui. Talvez cansada, talvez querendo silêncio, mas chegou. Isso já importa.</p>
+            </div>
+
+            <div class="day-row">
+              <div class="day-name">Domingo</div>
+              <p>Que seja um dia para respirar, descansar e lembrar que você venceu mais uma semana.</p>
+            </div>
+          </div>
+
+          <div class="progress-shell">
+            <div class="progress-bar" id="progressBar"></div>
+          </div>
+          <div class="progress-text" id="progressText">
+            Progresso emocional da semana: 0%
+          </div>
+
+          <div class="actions">
+            <button class="primary" onclick="fillProgress()">Carregar esperança da semana</button>
+            <button class="secondary" onclick="goTo('segredos')">Abrir mensagens escondidas</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="segredos" class="hidden">
+      <div class="wrap">
+        <div class="card">
+          <div class="tag">💌 Mensagens escondidas</div>
+          <h2>Toque para revelar</h2>
+
+          <p>
+            Cada mensagem aqui é um lembrete para quando a semana tentar convencer você de que está tudo pesado demais.
+          </p>
+
+          <div class="secret-area">
+            <div class="secret" onclick="revealSecret(this)">
+              🌙 Mensagem 1
+              <div class="secret-message">
+                Você não precisa dar conta de tudo com um sorriso no rosto. Até nos dias em que você só consegue tentar,
+                eu continuo tendo orgulho de você.
+              </div>
+            </div>
+
+            <div class="secret" onclick="revealSecret(this)">
+              🌸 Mensagem 2
+              <div class="secret-message">
+                Seu jeito não é um problema. Seu coração não é um peso. Você só merece ser cuidada com mais calma.
+              </div>
+            </div>
+
+            <div class="secret" onclick="revealSecret(this)">
+              ☀️ Mensagem 3
+              <div class="secret-message">
+                Eu espero que essa semana tenha pelo menos um momento em que você pense:
+                “até que hoje foi melhor do que eu esperava”.
+              </div>
+            </div>
+
+            <div class="secret" onclick="revealSecret(this)">
+              🫂 Mensagem 4
+              <div class="secret-message">
+                Se em algum momento você quiser silêncio, eu entendo. Se quiser conversar, eu fico.
+                Se quiser carinho, eu tento te entregar até pela tela.
+              </div>
+            </div>
+
+            <div class="secret" onclick="revealSecret(this)">
+              💛 Mensagem 5
+              <div class="secret-message">
+                Rafihx não quer ser só alguém que aparece nos dias bons. Ele quer ser alguém que fica
+                quando os dias difíceis também chegam.
+              </div>
+            </div>
+
+            <div class="secret" onclick="revealSecret(this)">
+              🌻 Mensagem 6
+              <div class="secret-message">
+                Você é mais forte do que pensa, mais importante do que imagina e mais amada do que às vezes consegue perceber.
+              </div>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button class="primary" onclick="goTo('chat')">Continuar para o chat</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="chat" class="hidden">
+      <div class="wrap">
+        <div class="card">
+          <div class="tag">📱 Uma conversa para a semana</div>
+          <h2>Gaby & Rafihx</h2>
+
+          <p>
+            Uma pequena conversa imaginando aqueles momentos em que a semana pesa, mas o carinho continua sendo maior.
+          </p>
+
+          <div class="phone">
+            <div class="phone-top">Gaby ❤️ Rafihx</div>
+
+            <div class="chat">
+              <div class="msg gaby">
+                Essa semana mal começou e eu já fico pensando se vou dar conta.
+              </div>
+
+              <div class="msg rafihx">
+                Você não precisa dar conta de tudo de uma vez, meu amor. Só de hoje. Só de agora.
+              </div>
+
+              <div class="msg gaby">
+                Às vezes eu fico cansada de tudo, até de explicar o que sinto.
+              </div>
+
+              <div class="msg rafihx">
+                Então não explica. Descansa. Eu não preciso entender tudo para continuar ficando do seu lado.
+              </div>
+
+              <div class="msg gaby">
+                E se eu tiver um dia ruim?
+              </div>
+
+              <div class="msg rafihx">
+                Eu continuo aqui. Seu dia ruim não muda o que eu sinto por você.
+              </div>
+
+              <div class="msg gaby">
+                E se a gente brigar de novo?
+              </div>
+
+              <div class="msg rafihx">
+                A gente respira, conversa melhor e aprende. Briga nenhuma é maior que a vontade que eu tenho de cuidar de nós.
+              </div>
+
+              <div class="msg gaby">
+                Você acredita mesmo que essa semana pode ser boa?
+              </div>
+
+              <div class="msg rafihx">
+                Acredito. Porque você está nela. E qualquer semana com você ainda tem chance de ser bonita.
+              </div>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button class="primary" onclick="goTo('cartas')">Abrir cartas da semana</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="cartas" class="hidden">
+      <div class="wrap">
+        <div class="card">
+          <div class="tag">✉️ Cartas por dia</div>
+          <h2>Uma carta para cada parte da semana</h2>
+
+          <div class="grid two">
+            <div class="mini-card">
+              <strong>Para quando a semana começar</strong>
+              <p>
+                Que você comece sem se cobrar demais. Que você lembre que um começo difícil ainda pode levar a um final bonito.
+              </p>
+            </div>
+
+            <div class="mini-card">
+              <strong>Para quando bater o cansaço</strong>
+              <p>
+                Para um pouco. Respira. Você não é menos incrível por precisar descansar.
+              </p>
+            </div>
+
+            <div class="mini-card">
+              <strong>Para quando sentir saudade</strong>
+              <p>
+                Lembra que do outro lado tem alguém pensando em você e querendo fazer parte dos seus dias.
+              </p>
+            </div>
+
+            <div class="mini-card">
+              <strong>Para quando sorrir</strong>
+              <p>
+                Guarda esse momento. Sorrisos pequenos também salvam dias inteiros.
+              </p>
+            </div>
+
+            <div class="mini-card">
+              <strong>Para quando algo der errado</strong>
+              <p>
+                Um erro, uma briga ou um momento difícil não define a semana inteira.
+              </p>
+            </div>
+
+            <div class="mini-card">
+              <strong>Para quando chegar no fim</strong>
+              <p>
+                Olha para trás com carinho. Você venceu mais dias do que achou que conseguiria.
+              </p>
+            </div>
+          </div>
+
+          <div class="quote">
+            “Que essa semana não seja perfeita. Que ela seja possível, leve em alguns momentos e cheia de pequenas razões para continuar.”
+          </div>
+
+          <div class="actions">
+            <button class="primary" onclick="goTo('jogo')">Começar jogo de decisões</button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="jogo" class="hidden">
+      <div class="wrap">
+        <div class="card">
+          <div class="tag">🎮 Jogo de decisões da semana</div>
+          <h2>Escolhas para deixar a semana mais leve</h2>
+
+          <p>
+            Aqui não existe resposta errada. Cada escolha mostra uma forma diferente de passar pela semana
+            com mais calma, carinho e apoio.
+          </p>
+
+          <div class="badge-row">
+            <span class="badge" id="hopeBadge">Esperança: 0</span>
+            <span class="badge" id="peaceBadge">Paz: 0</span>
+            <span class="badge" id="loveBadge">Amor: 0</span>
+          </div>
+
+          <div class="game-box">
+            <h3 id="phaseTitle"></h3>
+            <p id="question"></p>
+
+            <div class="options" id="options"></div>
+
+            <div class="answer" id="answer"></div>
+
+            <div class="actions">
+              <button class="primary hidden" id="nextBtn" onclick="nextPhase()">Continuar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="resultado" class="hidden">
+      <div class="wrap">
+        <div class="card">
+          <div class="tag">🌟 Resultado da semana</div>
+          <h2 id="resultTitle">A semana da Gaby</h2>
+
+          <p id="resultText"></p>
+
+          <div class="quote" id="resultQuote"></div>
+
+          <div class="actions">
+            <button class="primary" onclick="goTo('final')">Ler carta final</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="final" class="hidden">
+      <div class="wrap">
+        <div class="card">
+          <div class="tag">❤️ Carta final</div>
+          <h2>Boa semana, meu amor</h2>
+
+          <div class="final-letter">
+Gaby,
+
+Eu espero que essa semana te trate com mais carinho.
+
+Espero que ela tenha menos peso do que você imagina, mais motivos para sorrir do que você espera e pequenos momentos que te façam lembrar que ainda existem coisas boas acontecendo.
+
+Eu sei que talvez alguns dias sejam cansativos.
+
+Talvez o trabalho pese.
+
+Talvez você fique quietinha.
+
+Talvez você só queira descansar e esquecer um pouco do mundo.
+
+E tudo bem.
+
+Você não precisa estar bem o tempo todo para continuar sendo incrível.
+
+Você não precisa ter todas as respostas para continuar sendo forte.
+
+Você não precisa ser perfeita para continuar sendo amada.
+
+Eu quero que você lembre do nosso fim de semana com carinho. Mesmo com algumas brigas, mesmo com algumas faltas de atenção, ele ainda teve momentos lindos. Momentos que eu guardo. Momentos que me fizeram feliz. Momentos que me lembraram o quanto eu gosto de estar com você.
+
+E agora que uma nova semana começou, eu quero escolher fazer diferente.
+
+Quero ter mais calma.
+
+Quero te dar mais atenção.
+
+Quero cuidar melhor de nós.
+
+Quero estar presente do jeito que você merece.
+
+Quando essa semana parecer pesada, lembra de mim.
+
+Lembra que existe um Rafihx que acredita em você de verdade.
+
+Que olha para você e enxerga força.
+
+Que olha para o seu cansaço e não vê fraqueza.
+
+Que olha para o seu jeito e continua escolhendo amar você.
+
+Eu desejo que você termine essa semana dizendo:
+
+“Eu consegui.”
+
+E, se em algum momento você achar que não consegue, deixa eu acreditar por você até você conseguir acreditar de novo.
+
+Boa semana, meu amor.
+
+Vai com calma.
+
+Vai no seu tempo.
+
+Vai sabendo que você é muito importante para mim.
+
+Com todo o meu carinho,
+
+Rafihx. ❤️
+          </div>
+
+          <div class="actions">
+            <button class="primary" onclick="rainHearts()">Receber carinho</button>
+            <button class="secondary" onclick="goTo('home')">Voltar ao início</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    const sections = document.querySelectorAll("section");
+
+    function goTo(id) {
+      sections.forEach(section => section.classList.add("hidden"));
+      document.getElementById(id).classList.remove("hidden");
+      window.scrollTo(0, 0);
+
+      if (id === "jogo") {
+        currentPhase = 0;
+        scores = {
+          hope: 0,
+          peace: 0,
+          love: 0
+        };
+        updateBadges();
+        loadPhase();
+      }
+    }
+
+    function fillProgress() {
+      const bar = document.getElementById("progressBar");
+      const text = document.getElementById("progressText");
+
+      let value = 0;
+
+      const interval = setInterval(() => {
+        value += 5;
+        bar.style.width = value + "%";
+        text.innerText = "Progresso emocional da semana: " + value + "%";
+
+        if (value >= 100) {
+          clearInterval(interval);
+          text.innerText = "Progresso emocional da semana: 100% — esperança carregada para a Gaby ✨";
+        }
+      }, 80);
+    }
+
+    function revealSecret(element) {
+      const message = element.querySelector(".secret-message");
+      message.style.display = message.style.display === "block" ? "none" : "block";
+    }
+
+    let currentPhase = 0;
+
+    let scores = {
+      hope: 0,
+      peace: 0,
+      love: 0
+    };
+
+    const phases = [
+      {
+        title: "Fase 1 — Segunda-feira chegando",
+        question: "A semana começa e você percebe que ainda está meio cansada do fim de semana. O que você escolhe?",
+        options: [
+          {
+            text: "Começar devagar, sem me cobrar tanto.",
+            answer: "Essa é uma escolha linda. Você não precisa carregar a semana inteira logo no primeiro dia. Um passo de cada vez também é progresso.",
+            type: "peace"
+          },
+          {
+            text: "Acreditar que essa semana pode ser melhor.",
+            answer: "Eu amo essa escolha. Uma semana nova também pode ser uma chance nova. E eu vou estar torcendo para ela te surpreender de um jeito bom.",
+            type: "hope"
+          },
+          {
+            text: "Lembrar que o Rafihx está torcendo por mim.",
+            answer: "Sim, eu estou. De verdade. Mesmo de longe, eu quero ser uma presença boa na sua semana, uma lembrança de carinho no meio da rotina.",
+            type: "love"
+          }
+        ]
+      },
+      {
+        title: "Fase 2 — O trabalho ficou pesado",
+        question: "Depois de um dia corrido, você recebe uma notificação. É o Rafihx. O que você gostaria que acontecesse agora?",
+        options: [
+          {
+            text: "Quero um abraço do Rafihx.",
+            answer: "Então fecha os olhos por alguns segundos. Imagina eu te abraçando bem forte, sem pressa, só deixando seu coração descansar um pouquinho.",
+            type: "love"
+          },
+          {
+            text: "Quero conversar com o Rafihx até esquecer o peso do dia.",
+            answer: "Eu ouviria cada detalhe do seu dia, até os pequenos. Porque tudo que acontece com você importa para mim, e eu quero ser alguém que deixa seu coração mais leve.",
+            type: "love"
+          },
+          {
+            text: "Quero que o Rafihx fique comigo em silêncio.",
+            answer: "Nem sempre a gente precisa falar. Às vezes eu só ficaria ali, do seu lado, te lembrando em silêncio que você não precisa enfrentar essa semana sozinha.",
+            type: "peace"
+          }
+        ]
+      },
+      {
+        title: "Fase 3 — Quando a semana parecer pesada",
+        question: "Chega aquele momento em que tudo parece cansar ao mesmo tempo. Se o Rafihx pudesse estar aí agora, o que você escolheria?",
+        options: [
+          {
+            text: "Quero que o Rafihx me lembre do quanto eu sou forte.",
+            answer: "Você já venceu dias muito mais difíceis do que imagina. O cansaço não diminui a mulher incrível que você é. Ele só mostra o quanto você vem lutando.",
+            type: "hope"
+          },
+          {
+            text: "Quero descansar um pouco ao lado do Rafihx.",
+            answer: "Eu ficaria ali com você sem cobrar nada, sem exigir nada, só deixando você sentir que comigo você não precisa ser forte o tempo todo.",
+            type: "peace"
+          },
+          {
+            text: "Quero ouvir o que o Rafihx pensa sobre mim.",
+            answer: "Eu penso que você é muito mais do que o cansaço da sua semana. Você é linda, forte, importante, especial e continua sendo a pessoa que eu escolho admirar todos os dias.",
+            type: "love"
+          }
+        ]
+      },
+      {
+        title: "Fase 4 — Um dia difícil apareceu",
+        question: "Alguma coisa não saiu como você esperava. O que você faz?",
+        options: [
+          {
+            text: "Respiro e tento não transformar um momento ruim em uma semana ruim.",
+            answer: "Isso é maturidade e cuidado com você. Um momento ruim não tem o direito de definir todos os outros dias que ainda podem ser bons.",
+            type: "peace"
+          },
+          {
+            text: "Mando mensagem para o Rafihx e falo que o dia pesou.",
+            answer: "E eu vou querer saber. Não para te julgar, mas para te acolher. Eu quero ser alguém com quem você pode falar quando o coração estiver cansado.",
+            type: "love"
+          },
+          {
+            text: "Lembro que amanhã ainda pode ser diferente.",
+            answer: "Exatamente. Um dia ruim termina. Uma noite passa. E amanhã pode chegar com uma chance nova de respirar melhor.",
+            type: "hope"
+          }
+        ]
+      },
+      {
+        title: "Fase 5 — Saudade no meio da semana",
+        question: "No meio da semana bate aquela saudade. Qual escolha combina mais com você?",
+        options: [
+          {
+            text: "Quero lembrar dos momentos bons do nosso fim de semana.",
+            answer: "Mesmo com alguns desentendimentos, tivemos momentos lindos. E eu prefiro guardar o que fez meu coração sorrir.",
+            type: "love"
+          },
+          {
+            text: "Quero imaginar que logo vamos viver outro momento bom.",
+            answer: "Sim. O melhor da nossa história é que ela ainda continua. Ainda tem conversa, risada, carinho e muita coisa bonita para viver.",
+            type: "hope"
+          },
+          {
+            text: "Quero só sentir que estamos bem.",
+            answer: "Então sente isso daqui: eu quero ficar bem com você. Quero melhorar com você. Quero cuidar melhor de nós.",
+            type: "peace"
+          }
+        ]
+      },
+      {
+        title: "Fase 6 — Quando faltar energia",
+        question: "A semana exige muito e sua energia fica baixa. O que você escolhe levar no coração?",
+        options: [
+          {
+            text: "Descanso também é importante.",
+            answer: "Muito. Você não é uma máquina. Você é uma pessoa maravilhosa que também precisa de pausa, cuidado e silêncio.",
+            type: "peace"
+          },
+          {
+            text: "Eu já venci dias difíceis antes.",
+            answer: "E venceu mesmo. Você tem uma força que talvez nem perceba, mas eu vejo. E vou lembrar você disso quantas vezes for preciso.",
+            type: "hope"
+          },
+          {
+            text: "O Rafihx continua comigo.",
+            answer: "Continuo. Mesmo quando não sei exatamente o que dizer, eu ainda quero ficar, ouvir, cuidar e amar você do jeito mais sincero possível.",
+            type: "love"
+          }
+        ]
+      },
+      {
+        title: "Fase 7 — A sexta chega",
+        question: "A sexta chega e você olha para trás. Como quer enxergar sua semana?",
+        options: [
+          {
+            text: "Como uma semana em que eu tentei.",
+            answer: "E tentar já importa demais. Nem todo mundo vê o quanto você se esforça, mas eu vejo. E tenho orgulho.",
+            type: "hope"
+          },
+          {
+            text: "Como uma semana em que eu sobrevivi aos dias difíceis.",
+            answer: "Sobreviver também é vitória. Nem toda conquista faz barulho. Algumas só dizem baixinho: eu consegui chegar até aqui.",
+            type: "peace"
+          },
+          {
+            text: "Como uma semana em que fui amada mesmo cansada.",
+            answer: "Porque você foi. Você é amada nos dias leves e nos dias pesados. Seu cansaço não diminui o carinho que eu tenho por você.",
+            type: "love"
+          }
+        ]
+      },
+      {
+        title: "Fase 8 — A escolha final",
+        question: "Para terminar, o que você quer levar desta semana para o coração?",
+        options: [
+          {
+            text: "Esperança de que as coisas podem melhorar.",
+            answer: "Que essa esperança fique com você. Nem tudo melhora de uma vez, mas muita coisa pode começar a ficar mais leve aos poucos.",
+            type: "hope"
+          },
+          {
+            text: "Paz para não me cobrar tanto.",
+            answer: "Que essa paz te abrace. Você merece se tratar com mais calma, mais paciência e menos culpa.",
+            type: "peace"
+          },
+          {
+            text: "Amor para lembrar que não estou sozinha.",
+            answer: "Que esse amor te acompanhe. Porque você realmente não está sozinha. Eu estou aqui, escolhendo você e torcendo por você.",
+            type: "love"
+          }
+        ]
+      }
+    ];
+
+    function updateBadges() {
+      document.getElementById("hopeBadge").innerText = "Esperança: " + scores.hope;
+      document.getElementById("peaceBadge").innerText = "Paz: " + scores.peace;
+      document.getElementById("loveBadge").innerText = "Amor: " + scores.love;
+    }
+
+    function loadPhase() {
+      const phase = phases[currentPhase];
+
+      document.getElementById("phaseTitle").innerText = phase.title;
+      document.getElementById("question").innerText = phase.question;
+
+      const options = document.getElementById("options");
+      const answer = document.getElementById("answer");
+      const nextBtn = document.getElementById("nextBtn");
+
+      options.innerHTML = "";
+      answer.style.display = "none";
+      answer.innerText = "";
+      nextBtn.classList.add("hidden");
+
+      phase.options.forEach(option => {
+        const btn = document.createElement("button");
+        btn.className = "option";
+        btn.innerText = option.text;
+        btn.onclick = () => chooseOption(option);
+        options.appendChild(btn);
+      });
+    }
+
+    function chooseOption(option) {
+      scores[option.type] += 10;
+      updateBadges();
+
+      const answer = document.getElementById("answer");
+      answer.innerText = option.answer;
+      answer.style.display = "block";
+
+      document.getElementById("nextBtn").classList.remove("hidden");
+
+      document.querySelectorAll(".option").forEach(btn => {
+        btn.disabled = true;
+        btn.style.opacity = ".55";
+        btn.style.cursor = "default";
+      });
+    }
+
+    function nextPhase() {
+      currentPhase++;
+
+      if (currentPhase >= phases.length) {
+        showResult();
+      } else {
+        loadPhase();
+      }
+    }
+
+    function showResult() {
+      let main = "love";
+
+      if (scores.hope >= scores.peace && scores.hope >= scores.love) {
+        main = "hope";
+      } else if (scores.peace >= scores.hope && scores.peace >= scores.love) {
+        main = "peace";
+      }
+
+      const title = document.getElementById("resultTitle");
+      const text = document.getElementById("resultText");
+      const quote = document.getElementById("resultQuote");
+
+      if (main === "hope") {
+        title.innerText = "Resultado: Uma semana de esperança ✨";
+        text.innerText = "Suas escolhas mostraram que, mesmo quando a semana parece incerta, ainda existe dentro de você uma vontade bonita de acreditar que as coisas podem melhorar.";
+        quote.innerText = "Rafihx diria: eu acredito em você até nos dias em que você esquece da sua própria força.";
+      }
+
+      if (main === "peace") {
+        title.innerText = "Resultado: Uma semana de paz 🌙";
+        text.innerText = "Suas escolhas mostraram que você merece uma semana com menos cobrança, mais descanso e mais calma para atravessar cada dia no seu tempo.";
+        quote.innerText = "Rafihx diria: você não precisa ser forte o tempo todo. Comigo, você também pode descansar.";
+      }
+
+      if (main === "love") {
+        title.innerText = "Resultado: Uma semana com amor ❤️";
+        text.innerText = "Suas escolhas mostraram que o carinho também pode ser uma força. Mesmo nos dias cansativos, você merece lembrar que é amada e importante.";
+        quote.innerText = "Rafihx diria: eu escolho você nos dias bons, nos dias difíceis e em todos os dias dessa semana.";
+      }
+
+      goTo("resultado");
+    }
+
+    function rainHearts() {
+      const items = ["❤️", "💛", "💚", "✨", "🌙", "🌻"];
+
+      for (let i = 0; i < 45; i++) {
+        setTimeout(() => {
+          const heart = document.createElement("div");
+          heart.className = "heart";
+          heart.innerText = items[Math.floor(Math.random() * items.length)];
+          heart.style.left = Math.random() * 100 + "vw";
+          heart.style.fontSize = (18 + Math.random() * 18) + "px";
+          document.body.appendChild(heart);
+
+          setTimeout(() => {
+            heart.remove();
+          }, 4300);
+        }, i * 90);
+      }
+    }
+  </script>
+</body>
+</html>
